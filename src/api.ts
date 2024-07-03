@@ -9,10 +9,10 @@ export async function searchMovies(query: string, page: number = 1, endpoint?: s
     if (endpoint) {
         const response = await fetch(`${BASE_URL}/movie/${endpoint}?api_key=${API_KEY}&query=${query}&page=${page}`);
         return response.json()
-    } else {
+    } 
         const response = await fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&page=${page}`)
         return response.json();
-    }
+    
 
 }
 export async function fetchMovies(endpoint: string): Promise<void> {

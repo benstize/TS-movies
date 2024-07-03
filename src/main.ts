@@ -37,6 +37,9 @@ document.querySelectorAll('input[name="btnradio"]').forEach(radio => {
                 endpoint = 'top_rated';
                 endPointSearch = 'top_rated'
                 break;
+            default:
+                endpoint = 'popular';
+                endPointSearch = 'popular'
         }
 
         fetchMovies(endpoint)
@@ -72,7 +75,6 @@ if (searchForm) {
         event.preventDefault();
         const query = searchInput?.value;
         if (query) {
-            console.log(query)
             const response = await searchMovies(query, 1);
             displayMovies(response.results);
         }

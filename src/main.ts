@@ -1,12 +1,12 @@
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/styles.css';
-const BASE_URL = 'https://api.themoviedb.org/3';
-const API_KEY = '86d4d21a3efead74f3ae57364ed831d7';
-import { searchMovies, getPopularMovies } from './api';
+
+import { searchMovies, getPopularMovies, fetchMovies } from './api';
 import { saveFavoriteMovie, removeFavoriteMovie, isFavorite, displayMovies, displayMovie, displayFavoriteMovies, undisplayFavoriteMovie } from './dom';
 import { getRandomElement } from './utils';
-import { Movie, ApiResponse } from './types';
+import { Movie } from './types';
+
 
 const searchForm = document.getElementById('search-submit') as HTMLFormElement;
 const searchInput = document.getElementById('search') as HTMLInputElement;
@@ -39,9 +39,7 @@ document.querySelectorAll('input[name="btnradio"]').forEach(radio => {
                 break;
         }
 
-        const response = await fetch(`${BASE_URL}/movie/${endpoint}?api_key=${API_KEY}`);
-        const data: ApiResponse = await response.json();
-        displayMovies(data.results);
+        fetchMovies(endpoint)
     });
 });
 
